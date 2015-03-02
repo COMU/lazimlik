@@ -1,0 +1,2 @@
+# lazimlik
+ortak üretim platformu
