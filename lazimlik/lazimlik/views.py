@@ -8,3 +8,6 @@ def anasayfa(request):
 
 def isverelim(request):
     return render_to_response('isverelim.html')
+
+def isyapalim(request):
+    return render_to_response('isyapalim.html')
