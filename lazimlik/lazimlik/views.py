@@ -5,3 +5,6 @@ from django.shortcuts import render_to_response, redirect, render
 
 def anasayfa(request):
     return render_to_response('anasayfa.html')
+
+def isverelim(request):
+    return render_to_response('isverelim.html')
