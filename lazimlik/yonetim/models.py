@@ -31,7 +31,7 @@ class isAlan(models.Model):
     rumuz = models.CharField(max_length = 40)
     bitirilenIsPuani = models.IntegerField()
     teslimEdilmeyenIs = models.IntegerField()
-    isler = models.ManyToManyField(yapilacakIs)
+    isler = models.ManyToManyField(yapilacakIs, blank=True)
 
     def __unicode__(self):
         return self.rumuz
@@ -41,7 +41,7 @@ class isVeren(models.Model):
     rumuz = models.CharField(max_length = 40)
     yaptirilanIsPuani = models.IntegerField()
     teslimAlinmayanIs = models.IntegerField()
-    isler = models.ManyToManyField(yapilacakIs)
+    isler = models.ManyToManyField(yapilacakIs, blank=True)
 
     def __unicode__(self):
         return self.rumuz
