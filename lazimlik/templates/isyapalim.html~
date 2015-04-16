@@ -1,1 +1,7 @@
-<h1>İş Yapalım</h1>
+{% extends 'temel.html' %}
+
+{% block content %}
+
+İş Yapalım
+
+{% endblock %}
