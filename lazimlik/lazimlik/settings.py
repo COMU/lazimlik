@@ -24,10 +24,6 @@ DEBUG = True
 
 TEMPLATE_DEBUG = True
 
-TEMPLATE_DIRS = (
-        os.path.join(BASE_DIR, 'templates'),
-        )
-
 ALLOWED_HOSTS = []
 
 
@@ -81,19 +77,25 @@ USE_L10N = True
 
 USE_TZ = True
 
+# Template location
+TEMPLATE_DIRS = (
+        os.path.join(BASE_DIR, "static", "templates"),
+        )
+
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/1.7/howto/static-files/
 
 STATIC_URL = '/static/'
 
-# Additional locations of static files
-STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, 'static'),
-        )
+if DEBUG:
+	MEDIA_URL = '/media/'
+	STATIC_ROOT = os.path.join(BASE_DIR, "static", "static_only")
+	MEDIA_ROOT = os.path.join(BASE_DIR, "static", "media")
+
+	# Additional locations of static files
+	STATICFILES_DIRS = (
+		os.path.join(BASE_DIR, "static", "static"),
+		)
 
 # List of finder classes that know how to find static files in various locations.
-STATICFILES_FINDERS = (
-        'django.contrib.staticfiles.finders.FileSystemFinder',
-        'django.contrib.staticfiles.finders.AppDirectoriesFinder',
-        #'django.contrib.staticfiles.finders.DefaultStorageFinder',
-        )
+
