@@ -28,12 +28,12 @@ class yapilacakIs(models.Model):
 
 class kullanici(models.Model):
     kullaniciId = models.AutoField(primary_key = True)
-    rumuz = models.CharField(max_length = 40)
-    bitirilenIsPuani = models.IntegerField()
-    teslimEdilmeyenIs = models.IntegerField()
+    rumuz = models.CharField(max_length = 40, unique=True)
+    bitirilenIsPuani = models.IntegerField(default=0)
+    teslimEdilmeyenIs = models.IntegerField(default=0)
     isler = models.ManyToManyField(yapilacakIs, blank=True)
-    yaptirilanIsPuani = models.IntegerField()
-    teslimAlinmayanIs = models.IntegerField()
+    yaptirilanIsPuani = models.IntegerField(default=0)
+    teslimAlinmayanIs = models.IntegerField(default=0)
 
     def __unicode__(self):
         return self.rumuz
