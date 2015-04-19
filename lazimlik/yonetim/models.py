@@ -26,22 +26,14 @@ class yapilacakIs(models.Model):
     def __unicode__(self):
         return self.tanimi
 
-class isAlan(models.Model):
-    isAlanId = models.AutoField(primary_key = True)
+class kullanici(models.Model):
+    kullaniciId = models.AutoField(primary_key = True)
     rumuz = models.CharField(max_length = 40)
     bitirilenIsPuani = models.IntegerField()
     teslimEdilmeyenIs = models.IntegerField()
     isler = models.ManyToManyField(yapilacakIs, blank=True)
-
-    def __unicode__(self):
-        return self.rumuz
-
-class isVeren(models.Model):
-    isVerenId = models.AutoField(primary_key = True)
-    rumuz = models.CharField(max_length = 40)
     yaptirilanIsPuani = models.IntegerField()
     teslimAlinmayanIs = models.IntegerField()
-    isler = models.ManyToManyField(yapilacakIs, blank=True)
 
     def __unicode__(self):
         return self.rumuz

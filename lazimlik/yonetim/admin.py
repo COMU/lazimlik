@@ -4,5 +4,4 @@ from yonetim.models import *
 admin.site.register(sehir)
 admin.site.register(etiket)
 admin.site.register(yapilacakIs)
-admin.site.register(isAlan)
-admin.site.register(isVeren)
+admin.site.register(kullanici)
