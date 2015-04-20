@@ -11,9 +11,9 @@ urlpatterns = patterns('',
     # url(r'^blog/', include('blog.urls')),
 
     url(r'^admin/', include(admin.site.urls)),
-    url(r'^$', 'yonetim.views.anasayfa'),
-    url(r'^isverelim$', 'yonetim.views.isverelim'),
-    url(r'^isyapalim$', 'yonetim.views.isyapalim'),
+    url(r'^$', 'yonetim.views.anasayfa', name='anasayfa'),
+    url(r'^isverelim$', 'yonetim.views.isverelim', name='isverelim'),
+    url(r'^isyapalim$', 'yonetim.views.isyapalim', name='isyapalim'),
 )
 
 if settings.DEBUG:
