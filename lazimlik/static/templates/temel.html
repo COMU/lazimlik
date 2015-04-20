@@ -34,15 +34,7 @@
   <body>
 
   	{% include 'navbar.html' %}
-
-    <!-- Main jumbotron for a primary marketing message or call to action -->
-    <div class="jumbotron">
-      <div class="container">
-        <h1>Ortak Üret!</h1>
-        <p>Anonim kalarak ortak üretim yapmak ister misiniz?</p>
-        <p><a class="btn btn-primary btn-lg" href="#" role="button">Learn more &raquo;</a></p>
-      </div>
-    </div>
+  	{% block giris %}{% endblock %}
 
     <div class="container">
 		{% if messages %}
@@ -54,7 +46,9 @@
     			</div>
     		</div>
     	{% endif %}
-    	<div>
+    	<div class="col-sm-16">
+    		<br>
+    		<br>
     		{% block icerik %}{% endblock %}
     	</div>
       <hr>
