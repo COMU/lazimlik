@@ -3,12 +3,14 @@ from django.http import *
 from django.template import Template, Context
 from django.shortcuts import render_to_response, redirect, render, RequestContext, HttpResponseRedirect
 from django.contrib import messages
+from django.contrib.auth.decorators import login_required
 
 from .forms import yapilacakIsForm
 
 def anasayfa(request):
     return render_to_response("anasayfa.html")
 
+@login_required
 def isverelim(request):
 
 	form = yapilacakIsForm(request.POST or None)
