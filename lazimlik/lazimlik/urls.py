@@ -13,11 +13,12 @@ urlpatterns = patterns('',
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'yonetim.views.anasayfa', name='anasayfa'),
     url(r'^home/$', 'social_app.views.home', name='home'),
-    url(r'^isverelim$', 'yonetim.views.isverelim', name='isverelim'),
-    url(r'^isyapalim$', 'yonetim.views.isyapalim', name='isyapalim'),
+    url(r'^user/$', 'yonetim.views.user', name='user'),
+    url(r'^isverelim/$', 'yonetim.views.isverelim', name='isverelim'),
+    url(r'^isyapalim/$', 'yonetim.views.isyapalim', name='isyapalim'),
     url(r'', include('social_auth.urls')),
-    url(r'^login$', 'social_app.views.login', name='giris'),
-    url(r'^logout$', 'social_app.views.logout', name='logout'),
+    url(r'^login/$', 'social_app.views.login', name='giris'),
+    url(r'^logout/$', 'social_app.views.logout', name='logout'),
 )
 
 if settings.DEBUG:

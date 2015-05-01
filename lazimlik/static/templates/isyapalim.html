@@ -1,7 +1,11 @@
 {% extends 'temel.html' %}
 
-{% block baslik %}
+{% block icerik %}
 
-İş Yapalım
+	<div id="isList">
+		{% for is in isler %}
+		{{ is }}
+		{% endfor %}
+	</div>
 
 {% endblock %}

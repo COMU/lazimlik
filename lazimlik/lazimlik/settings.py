@@ -71,7 +71,7 @@ TWITTER_CONSUMER_KEY         = '23BbUnPK5i44zMT0sgFvCsng2'
 TWITTER_CONSUMER_SECRET      = 'vnt4acT7UHkVwztku9HqvHNtvo6RbLXmfusj2mCwBibN8WX8bh'
 
 LOGIN_URL          = '/giris/'
-LOGIN_REDIRECT_URL = '/home/'
+LOGIN_REDIRECT_URL = '/user/'
 LOGIN_ERROR_URL    = '/giris-hata/'
 
 ROOT_URLCONF = 'lazimlik.urls'

@@ -1,0 +1,15 @@
+{% extends 'temel.html' %}
+
+{% block baslik %}Rumuz oluştur{% endblock %}
+
+{% block icerik %}
+
+<form method='POST' action=''>
+
+	{% csrf_token %}
+	{{ form.as_p }}
+
+	<input type='submit' class='btn btn-success'>
+</form>
+
+{% endblock %}
