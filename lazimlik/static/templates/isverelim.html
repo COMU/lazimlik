@@ -7,8 +7,37 @@
 <form method='POST' action=''>
 
 	{% csrf_token %}
-	{{ form.as_p }}
-
+    {{ form.non_field_errors }}
+    <div class="fieldWrapper">
+        {{ form.tanimi.errors }}
+        <label>Tanımı:</label>
+        {{ form.tanimi }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.baslamaTarihi.errors }}
+        <label>Baslangıç Tarihi:</label>
+        {{ form.baslamaTarihi }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.bitisTarihi.errors }}
+        <label>Bitiş Tarihi:</label>
+        {{ form.bitisTarihi }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.detaylar.errors }}
+        <label>Detaylar:</label>
+        {{ form.detaylar }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.etiketler.errors }}
+        <label>Etiketler:</label>
+        {{ form.etiketler }}
+    </div>
+    <div class="fieldWrapper">
+        {{ form.sehir.errors }}
+        <label>Yer:</label>
+        {{ form.sehir }}
+    </div>
 	<input type='submit' class='btn btn-success'>
 </form>
 

@@ -2,19 +2,30 @@
 
 {% block icerik %}
 
-	<div id="isList">
+	<div class="row">
 		{% for is in isler %}
-		{{ is.tanimi }}
-		</br>
-		{{ is.baslamaTarihi }}
-		</br>
-		{{ is.bitisTarihi }}
-		</br>
-		{{ is.detaylar }}
-		</br>
-		{{ is.sehir }}
-		</br>
-		</br>
+	<div class='col-sm-6'>
+		<div class="fieldWrapper">
+        	<label>Tanımı:</label>
+			{{ is.tanimi }}
+    	</div>
+    	<div class="fieldWrapper">
+        	<label>Başlangıç Tarihi:</label>
+			{{ is.baslamaTarihi }}
+    	</div>
+    	<div class="fieldWrapper">
+        	<label>Bitiş Tarihi:</label>
+        	{{ is.bitisTarihi }}
+    	</div>
+    	<div class="fieldWrapper">
+        	<label for="id_cc_myself">Detaylar:</label>
+			{{ is.detaylar }}
+    	</div>
+    	<div class="fieldWrapper">
+        	<label>Yer:</label>
+			{{ is.sehir }}
+    	</div>
+    </div>
 		{% endfor %}
 	</div>
 
