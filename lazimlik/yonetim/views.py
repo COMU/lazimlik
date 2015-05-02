@@ -30,15 +30,14 @@ def user(request):
 
     form = kullaniciForm(request.POST or None)
 
-	if form.is_valid():
-		save_it = form.save(commit=False)
-		save_it.save()
-		messages.success(request, 'Rumuz oluşturuldu.')
-		return HttpResponseRedirect('/')
+#	if form.is_valid():
+#		save_it = form.save(commit=False)
+#		save_it.save()
+#		messages.success(request, 'Rumuz oluşturuldu.')
+#		return HttpResponseRedirect('/')
 		
-	return render_to_response("user.html", locals(), context_instance=RequestContext(request))
+#	return render_to_response("user.html", locals(), context_instance=RequestContext(request))
 
 def isyapalim(request):
-	isler = yapilacakIs.objects.order_by("tanimi")
-	context = {'İşler': isler}
-    	return render_to_response("isyapalim.html",context, context_instance=RequestContext(request))
+	isler = yapilacakIs.objects.all()
+    	return render_to_response("isyapalim.html",locals(), context_instance=RequestContext(request))

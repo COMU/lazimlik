@@ -4,8 +4,6 @@ from django.http import *
 from django.template import Template, Context
 from django.shortcuts import render_to_response, redirect, render, RequestContext, HttpResponseRedirect
 
-
-
 def login(request):
     return render(request, 'login.html')
 

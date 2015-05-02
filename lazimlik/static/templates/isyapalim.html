@@ -4,7 +4,17 @@
 
 	<div id="isList">
 		{% for is in isler %}
-		{{ is }}
+		{{ is.tanimi }}
+		</br>
+		{{ is.baslamaTarihi }}
+		</br>
+		{{ is.bitisTarihi }}
+		</br>
+		{{ is.detaylar }}
+		</br>
+		{{ is.sehir }}
+		</br>
+		</br>
 		{% endfor %}
 	</div>
 
