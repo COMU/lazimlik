@@ -17,7 +17,7 @@ urlpatterns = patterns('',
     url(r'^isverelim/$', 'yonetim.views.isverelim', name='isverelim'),
     url(r'^isyapalim/$', 'yonetim.views.isyapalim', name='isyapalim'),
     url(r'', include('social_auth.urls')),
-    url(r'^login/$', 'social_app.views.login', name='giris'),
+    url(r'^login/$', 'social_app.views.login', name='login'),
     url(r'^logout/$', 'social_app.views.logout', name='logout'),
 )
 

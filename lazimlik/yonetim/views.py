@@ -22,21 +22,20 @@ def isverelim(request):
 		save_it.save()
 		messages.success(request, 'İş eklendi.')
 		return HttpResponseRedirect('/')
-		
+
 	return render_to_response("isverelim.html", locals(), context_instance=RequestContext(request))
 
-@login_required
 def user(request):
 
-    form = kullaniciForm(request.POST or None)
+	form = kullaniciForm(request.POST or None)
 
-#	if form.is_valid():
-#		save_it = form.save(commit=False)
-#		save_it.save()
-#		messages.success(request, 'Rumuz oluşturuldu.')
-#		return HttpResponseRedirect('/')
-		
-#	return render_to_response("user.html", locals(), context_instance=RequestContext(request))
+	if form.is_valid():
+		save_it = form.save(commit=False)
+		save_it.save()
+		messages.success(request, 'Rumuz eklendi.')
+		return HttpResponseRedirect('/home')
+
+	return render_to_response("user.html", locals(), context_instance=RequestContext(request))
 
 def isyapalim(request):
 	isler = yapilacakIs.objects.all()

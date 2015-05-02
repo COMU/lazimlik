@@ -7,7 +7,12 @@
 <form method='POST' action=''>
 
 	{% csrf_token %}
-	{{ form.as_p }}
+    {{ form.non_field_errors }}
+    <div class="fieldWrapper">
+        {{ form.rumuz.errors }}
+        <label>Rumuz:</label>
+        {{ form.rumuz }}
+    </div>
 
 	<input type='submit' class='btn btn-success'>
 </form>
