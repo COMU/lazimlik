@@ -8,35 +8,5 @@
 			<p>Anonim kalarak ortak üretim yapmak ister misiniz?</p>
 			<p><a href="{% url 'about' %}" class="btn btn-primary btn-bg">Daha Fazla.. &raquo;</a></p>
 		</div>
-		{% block icerik %}
-
-	<div class="row">
-		{% for is in isler %}
-	<div class='col-sm-6'>
-		<div class="fieldWrapper">
-        	<label>Tanımı:</label>
-			{{ is.tanimi }}
-    	</div>
-    	<div class="fieldWrapper">
-        	<label>Başlangıç Tarihi:</label>
-			{{ is.baslamaTarihi }}
-    	</div>
-    	<div class="fieldWrapper">
-        	<label>Bitiş Tarihi:</label>
-        	{{ is.bitisTarihi }}
-    	</div>
-    	<div class="fieldWrapper">
-        	<label for="id_cc_myself">Detaylar:</label>
-			{{ is.detaylar }}
-    	</div>
-    	<div class="fieldWrapper">
-        	<label>Yer:</label>
-			{{ is.sehir }}
-    	</div>
-    </div>
-		{% endfor %}
-	</div>
-
-{% endblock %}
     </div>
 {% endblock %}
