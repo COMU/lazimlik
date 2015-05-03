@@ -1,9 +1,14 @@
+{% extends 'temel.html' %}
+
+{% block icerik %}
 <div class="container">
     <div class='row'>
-    	<h3>Oturum Aç</h3>
+    	<h2>Oturum Aç</h2>
     </div>
     <div class="col-bg-16">
-    	<a href="{% url 'socialauth_begin' 'twitter' %}" class="primaryLink">Login with Twitter</a>
+    	<h2><a href="{% url 'socialauth_begin' 'twitter' %}" class="primaryLink">Login with Twitter</a></h2>
     </div>
 
-</div> <!-- /container -->
+</div>
+
+{% endblock %}

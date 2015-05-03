@@ -7,38 +7,73 @@
 <form method='POST' action=''>
 
 	{% csrf_token %}
-    {{ form.non_field_errors }}
-    <div class="fieldWrapper">
-        {{ form.tanimi.errors }}
-        <label>Tanımı:</label>
-        {{ form.tanimi }}
-    </div>
-    <div class="fieldWrapper">
-        {{ form.baslamaTarihi.errors }}
-        <label>Baslangıç Tarihi:</label>
-        {{ form.baslamaTarihi }}
-    </div>
-    <div class="fieldWrapper">
-        {{ form.bitisTarihi.errors }}
-        <label>Bitiş Tarihi:</label>
-        {{ form.bitisTarihi }}
-    </div>
-    <div class="fieldWrapper">
-        {{ form.detaylar.errors }}
-        <label>Detaylar:</label>
-        {{ form.detaylar }}
-    </div>
-    <div class="fieldWrapper">
-        {{ form.etiketler.errors }}
-        <label>Etiketler:</label>
-        {{ form.etiketler }}
-    </div>
-    <div class="fieldWrapper">
-        {{ form.sehir.errors }}
-        <label>Yer:</label>
-        {{ form.sehir }}
-    </div>
+	{{ form.non_field_errors }}
+<div class="row">
+	<div class='col-md-6'>
+		<table class="table table-bordered">
+			<tr>
+				<div class="fieldWrapper">
+					<td>
+						<label>Tanımı:</label>
+						{{ form.tanimi.errors }}
+					</td>
+					<td>{{ form.tanimi }}</td>
+				</div>
+			</tr>
+
+			<tr>
+				<div class="fieldWrapper">
+					<td>
+						<label>Başlangıç Tarihi:</label>
+						{{ form.baslamaTarihi.errors }}
+					</td>
+					<td>{{ form.baslamaTarihi }}</td>
+				</div>
+			</tr>
+
+			<tr>
+				<div class="fieldWrapper">
+					<td>
+						<label>Bitiş Tarihi:</label>
+						{{ form.bitisTarihi.errors }}
+					</td>
+					<td>{{ form.bitisTarihi }}</td>
+				</div>
+			</tr>
+
+			<tr>
+				<div class="fieldWrapper">
+					<td>
+						<label>Detaylar:</label>
+						{{ form.detaylar.errors }}
+					</td>
+					<td>{{ form.detaylar }}</td>
+				</div>
+			</tr>
+
+			<tr>
+				<div class="fieldWrapper">
+					<td>
+						<label>Etiketler:</label>
+						{{ form.etiketler.errors }}
+					</td>
+					<td>{{ form.etiketler }}</td>
+				</div>
+			</tr>
+
+			<tr>
+				<div class="fieldWrapper">
+					<td>
+						<label>Yer:</label>
+						{{ form.sehir.errors }}
+					</td>
+					<td>{{ form.sehir }}</td>
+				</div>
+			</tr>
+		</table>
+	</div>
 	<input type='submit' class='btn btn-success'>
+</div>
 </form>
 
 {% endblock %}
