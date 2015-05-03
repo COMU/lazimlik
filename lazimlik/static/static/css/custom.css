@@ -5,3 +5,16 @@
 .jumbotron1 {
 	background-color: #1A81F3;
 }
+
+.navbar-inverse .navbar-nav>li>a {
+	color: #FFFFFF;
+}
+
+.btn {
+	font-size: 16px;
+	border-radius: 6px;
+}
+
+body {
+	font-size: 16px;
+}
