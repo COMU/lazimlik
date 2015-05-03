@@ -1,5 +1,9 @@
 {% extends 'temel.html' %}
 
+{% block navbar %}
+	{% include 'navbar_cikis.html' %}
+{% endblock %}
+
 {% block giris %}
 	<div class="jumbotron">
 		<div class="container">
@@ -8,7 +12,4 @@
 			<p><a href="{% url 'about' %}" class="btn btn-primary btn-bg">Daha Fazla.. &raquo;</a></p>
 		</div>
     </div>
-	<div>
-		<a href="{% url 'logout' %}" type="button" class="btn btn-success navbar-btn">Çıkış</a>
-	</div>
 {% endblock %}
