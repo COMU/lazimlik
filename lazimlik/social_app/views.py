@@ -10,7 +10,7 @@ def login(request):
 @login_required
 
 def home(request):
-    return render_to_response("home.html")
+	return render_to_response("home.html")
 
 def logout(request):
     auth_logout(request)

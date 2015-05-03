@@ -1,9 +1,9 @@
 .jumbotron {
-	background-color: #1A81F3;
+	background-color: #FFFFFF;
 }
 
-.jumbotron1 {
-	background-color: #1A81F3;
+.navbar-inverse .navbar-nav>li>a {		
+	color: #FFFFFF;		
 }
 
 .btn {
@@ -13,4 +13,11 @@
 
 body {
 	font-size: 16px;
+}
+body {
+	background-color: #406464;
+}
+
+table {
+	background-color: rgb(137, 166, 156);
 }

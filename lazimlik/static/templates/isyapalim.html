@@ -4,28 +4,44 @@
 
 	<div class="row">
 		{% for is in isler %}
-	<div class='col-sm-6'>
-		<div class="fieldWrapper">
-        	<label>Tanımı:</label>
-			{{ is.tanimi }}
-    	</div>
-    	<div class="fieldWrapper">
-        	<label>Başlangıç Tarihi:</label>
-			{{ is.baslamaTarihi }}
-    	</div>
-    	<div class="fieldWrapper">
-        	<label>Bitiş Tarihi:</label>
-        	{{ is.bitisTarihi }}
-    	</div>
-    	<div class="fieldWrapper">
-        	<label for="id_cc_myself">Detaylar:</label>
-			{{ is.detaylar }}
-    	</div>
-    	<div class="fieldWrapper">
-        	<label>Yer:</label>
-			{{ is.sehir }}
-    	</div>
-    </div>
+			<div class='col-md-6'>
+				<table class="table table-bordered">
+					<tr>
+						<div class="fieldWrapper">
+							<td><label>Tanımı:</label></td>
+							<td>{{ is.tanimi }}</td>
+						</div>
+					</tr>
+
+					<tr>
+						<div class="fieldWrapper">
+							<td><label>Başlangıç Tarihi:</label></td>
+							<td>{{ is.baslamaTarihi }}</td>
+						</div>
+					</tr>
+
+					<tr>
+						<div class="fieldWrapper">
+							<td><label>Bitiş Tarihi:</label></td>
+							<td>{{ is.bitisTarihi }}</td>
+						</div>
+					</tr>
+
+					<tr>
+				    	<div class="fieldWrapper">
+							<td><label>Detaylar:</label></td>
+							<td>{{ is.detaylar }}</td>
+						</div>
+					</tr>
+
+					<tr>
+						<div class="fieldWrapper">
+							<td><label>Yer:</label></td>
+							<td>{{ is.sehir }}</td>
+						</div>
+					</tr>
+				</table>
+			</div>
 		{% endfor %}
 	</div>
 

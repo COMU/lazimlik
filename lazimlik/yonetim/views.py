@@ -10,7 +10,7 @@ from .forms import kullaniciForm
 from .models import yapilacakIs
 
 def anasayfa(request):
-    return render_to_response("anasayfa.html")
+	return render_to_response("anasayfa.html")
 
 def about(request):
     return render_to_response("about.html")
@@ -24,7 +24,7 @@ def isverelim(request):
 		save_it = form.save(commit=False)
 		save_it.save()
 		messages.success(request, 'İş eklendi.')
-		return HttpResponseRedirect('/')
+		return HttpResponseRedirect('/isyapalim')
 
 	return render_to_response("isverelim.html", locals(), context_instance=RequestContext(request))
 
