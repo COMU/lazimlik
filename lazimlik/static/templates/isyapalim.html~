@@ -1,7 +1,0 @@
-{% extends 'temel.html' %}
-
-{% block baslik %}
-
-İş Yapalım
-
-{% endblock %}

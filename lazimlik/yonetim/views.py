@@ -12,6 +12,9 @@ from .models import yapilacakIs
 def anasayfa(request):
     return render_to_response("anasayfa.html")
 
+def about(request):
+    return render_to_response("about.html")
+
 @login_required
 def isverelim(request):
 

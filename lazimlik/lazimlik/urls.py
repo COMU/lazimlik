@@ -12,6 +12,7 @@ urlpatterns = patterns('',
 
     url(r'^admin/', include(admin.site.urls)),
     url(r'^$', 'yonetim.views.anasayfa', name='anasayfa'),
+    url(r'^about/$', 'yonetim.views.about', name='about'),
     url(r'^home/$', 'social_app.views.home', name='home'),
     url(r'^user/$', 'yonetim.views.user', name='user'),
     url(r'^isverelim/$', 'yonetim.views.isverelim', name='isverelim'),
