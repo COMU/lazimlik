@@ -1,5 +1,5 @@
 .jumbotron {
-	background-color: #E5E5E5;
+	background-color: #FFFFFF;
 }
 
 .navbar-inverse .navbar-nav>li>a {		
@@ -12,12 +12,41 @@
 }
 
 body {
-	font-size: 16px;
+	font-size: 17px;
 }
 body {
-	background-color: #406464;
+	background-color: #55acee;
 }
 
 table {
-	background-color: rgb(137, 166, 156);
+	background-color: #3178A7;
+}
+
+hr {
+	border-top: 0px solid #FFF; */
+}
+
+.navbar-inverse .navbar-brand {
+color: #FFFFFF;
+}
+
+body {
+font-family: -webkit-pictograph;
+color: #FFF;
+}
+
+html, body {
+    height: 100%;
+}
+#wrapper {
+    min-height: 100%;
+    height: auto !important;
+    height: 100%;
+    margin-bottom: -100px;
+}
+.footer-ghost {
+    height: 100px;
+}
+footer {
+    padding: 20px 0;
 }

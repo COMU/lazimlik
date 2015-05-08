@@ -5,11 +5,13 @@
 {% endblock %}
 
 {% block giris %}
-	<div class="jumbotron">
+	<div class="jumbotron" style="background-image: url(/media/back1.jpg);">
 		<div class="container">
-			<h1>Ortak Üret!</h1>
+			<h1><font face="verdana">Ortak Üret!</font></h1>
 			<p>Anonim kalarak ortak üretim yapmak ister misiniz?</p>
 			<p><a href="{% url 'about' %}" class="btn btn-primary btn-bg">Daha Fazla.. &raquo;</a></p>
 		</div>
     </div>
 {% endblock %}
+
+{% block icerik %}

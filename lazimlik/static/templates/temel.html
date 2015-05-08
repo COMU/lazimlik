@@ -36,27 +36,29 @@
   	{% block navbar %}{% endblock %}
   	{% block giris %}{% endblock %}
 
-    <div class="container">
+    <div class="container" id="wrapper">
 		{% if messages %}
-    		<div class='row'>
-    			<div class='col-sm-6 col-sm-offset-3'>
-    				{% for message in messages %}
+			<div class='row'>
+				<div class='col-sm-6 col-sm-offset-3'>
+					{% for message in messages %}
     					<p{% if message.tags == "success" %} class="alert alert-success"{% endif %}>{{ message }}</p>
-    				{% endfor %}
-    			</div>
-    		</div>
-    	{% endif %}
-    	<div class="col-sm-16">
-    		<br/>
-    		<br/>
-    		{% block icerik %}{% endblock %}
-    	</div>
-      <hr>
-
-      <footer>
-        <p>&copy; Company 2014</p>
-      </footer>
-    </div> <!-- /container -->
+					{% endfor %}
+				</div>
+			</div>
+		{% endif %}
+		<div class="col-sm-16">
+			<br/>
+			<br/>
+			{% block icerik %}{% endblock %}
+		</div>
+		<hr>
+		 <div class="footer-ghost"></div>
+	</div> <!-- /container -->
+   	<footer>
+		{% load staticfiles %}
+		<center><img src="{% static "../media/footer.png" %}" alt="Footer"/></center>
+		<p align="center">&copy; Company 2015</p>
+	</footer>
 
     <!-- Bootstrap core JavaScript
     ================================================== -->
