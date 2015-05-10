@@ -2,11 +2,13 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+from django.conf import settings
 
 
 class Migration(migrations.Migration):
 
     dependencies = [
+        migrations.swappable_dependency(settings.AUTH_USER_MODEL),
     ]
 
     operations = [
@@ -21,24 +23,13 @@ class Migration(migrations.Migration):
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='isAlan',
+            name='kullanici',
             fields=[
-                ('isAlanId', models.AutoField(serialize=False, primary_key=True)),
-                ('rumuz', models.CharField(max_length=40)),
-                ('bitirilenIsPuani', models.IntegerField()),
-                ('teslimEdilmeyenIs', models.IntegerField()),
-            ],
-            options={
-            },
-            bases=(models.Model,),
-        ),
-        migrations.CreateModel(
-            name='isVeren',
-            fields=[
-                ('isVerenId', models.AutoField(serialize=False, primary_key=True)),
-                ('rumuz', models.CharField(max_length=40)),
-                ('yaptirilanIsPuani', models.IntegerField()),
-                ('teslimAlinmayanIs', models.IntegerField()),
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('bitirilenIsPuani', models.IntegerField(default=0)),
+                ('teslimEdilmeyenIs', models.IntegerField(default=0)),
+                ('yaptirilanIsPuani', models.IntegerField(default=0)),
+                ('teslimAlinmayanIs', models.IntegerField(default=0)),
             ],
             options={
             },
@@ -70,15 +61,15 @@ class Migration(migrations.Migration):
             bases=(models.Model,),
         ),
         migrations.AddField(
-            model_name='isveren',
+            model_name='kullanici',
             name='isler',
-            field=models.ManyToManyField(to='yonetim.yapilacakIs'),
+            field=models.ManyToManyField(to='yonetim.yapilacakIs', blank=True),
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='isalan',
-            name='isler',
-            field=models.ManyToManyField(to='yonetim.yapilacakIs'),
+            model_name='kullanici',
+            name='user',
+            field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
             preserve_default=True,
         ),
     ]
