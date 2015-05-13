@@ -6,6 +6,7 @@ from django.contrib import messages
 from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
+from django import forms
 from .forms import YapilacakIsForm
 from .forms import UserProfileForm
 from .models import YapilacakIs
@@ -33,9 +34,16 @@ def isverelim(request):
 
 @login_required
 def user(request):
-	u = User.objects.get(pk=1)
-	se = u
-	kullanan = UserProfile.objects.filter(user = request.user)
+	form = UserProfileForm(request.POST or None)
+	form.fields['user'].widget = forms.HiddenInput()
+
+	if request.POST:
+		form = UserProfileForm({'user':request.user.id})
+		print form
+		form.save()
+		messages.success(request, 'Rumuz eklendi.')
+		return HttpResponseRedirect('/home')
+
 	return render_to_response("user.html", locals(), context_instance=RequestContext(request))
 
 def isyapalim(request):

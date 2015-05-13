@@ -10,3 +10,6 @@ class YapilacakIsForm(forms.ModelForm):
 class UserProfileForm(forms.ModelForm):
 	class Meta:
 		model = UserProfile
+		widgets={
+			'user':forms.HiddenInput(),
+		}

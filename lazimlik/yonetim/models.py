@@ -29,7 +29,7 @@ class YapilacakIs(models.Model):
 
 class UserProfile(models.Model):
 	user = models.ForeignKey(User)
-	rumuz = models.CharField(max_length = 15)
+	rumuz = models.CharField(max_length = 15, unique=True)
 	bitirilen_is_puani = models.IntegerField(default=0)
 	teslim_edilmeyen_is = models.IntegerField(default=0)
 	isler = models.ManyToManyField(YapilacakIs, blank=True)

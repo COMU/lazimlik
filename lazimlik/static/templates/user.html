@@ -6,47 +6,12 @@
 
 
 {% block icerik %}
-
-	<div class="row">
-		{{ se }}
-		<div class='col-md-6'>
-			<table class="table table-bordered">
-				<tr>
-					<div class="fieldWrapper">
-						<td><label>Bitirilen İş Puani:</label></td>
-						<td>{{ kullanan.bitirilenIsPuani }}</td>
-					</div>
-				</tr>
-
-				<tr>
-					<div class="fieldWrapper">
-						<td><label>Başlangıç Tarihi:</label></td>
-						<td>{{ kullanan.teslimEdilmeyenIs }}</td>
-					</div>
-				</tr>
-
-				<tr>
-					<div class="fieldWrapper">
-						<td><label>Bitiş Tarihi:</label></td>
-						<td>{{ kullanan.isler }}</td>
-					</div>
-				</tr>
-
-				<tr>
-					<div class="fieldWrapper">
-						<td><label>Detaylar:</label></td>
-						<td>{{ kullanan.yaptirilanIsPuani }}</td>
-					</div>
-				</tr>
-
-				<tr>
-					<div class="fieldWrapper">
-						<td><label>Yer:</label></td>
-						<td>{{ kullanan.teslimAlinmayanIs }}</td>
-					</div>
-				</tr>
-			</table>
-		</div>
-	</div>
-
+<form method='POST' action=''>
+	{% csrf_token %}
+	{{ form.instance.field }} 
+	<label>Rumuz:</label>
+	{{ form.rumuz.errors }}
+	{{ form.rumuz }}
+	<input type='submit' class='btn btn-success'>
+</form>
 {% endblock %}
