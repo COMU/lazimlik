@@ -1,12 +1,12 @@
 from django import forms
 
-from .models import yapilacakIs
-from .models import kullanici
+from .models import YapilacakIs
+from .models import UserProfile
 
-class yapilacakIsForm(forms.ModelForm):
+class YapilacakIsForm(forms.ModelForm):
 	class Meta:
-		model = yapilacakIs
+		model = YapilacakIs
 
-class kullaniciForm(forms.ModelForm):
+class UserProfileForm(forms.ModelForm):
 	class Meta:
-		model = kullanici
+		model = UserProfile

@@ -70,6 +70,8 @@ AUTHENTICATION_BACKENDS = (
 TWITTER_CONSUMER_KEY         = '23BbUnPK5i44zMT0sgFvCsng2'
 TWITTER_CONSUMER_SECRET      = 'vnt4acT7UHkVwztku9HqvHNtvo6RbLXmfusj2mCwBibN8WX8bh'
 
+AUTH_PROFILE_MODULE = 'yonetim.UserProfile'
+
 LOGIN_URL          = '/giris/'
 LOGIN_REDIRECT_URL = '/user/'
 LOGIN_ERROR_URL    = '/giris-hata/'

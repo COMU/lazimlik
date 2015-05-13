@@ -13,61 +13,62 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
-            name='etiket',
+            name='Etiket',
             fields=[
-                ('etiketId', models.AutoField(serialize=False, primary_key=True)),
-                ('etiketAdi', models.CharField(max_length=40)),
+                ('etiket_id', models.AutoField(serialize=False, primary_key=True)),
+                ('etiket_adi', models.CharField(max_length=40)),
             ],
             options={
             },
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='kullanici',
+            name='Sehir',
+            fields=[
+                ('sehir_id', models.AutoField(serialize=False, primary_key=True)),
+                ('sehir_adi', models.CharField(max_length=40)),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='UserProfile',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('bitirilenIsPuani', models.IntegerField(default=0)),
-                ('teslimEdilmeyenIs', models.IntegerField(default=0)),
-                ('yaptirilanIsPuani', models.IntegerField(default=0)),
-                ('teslimAlinmayanIs', models.IntegerField(default=0)),
+                ('rumuz', models.CharField(max_length=15)),
+                ('bitirilen_is_puani', models.IntegerField(default=0)),
+                ('teslim_edilmeyen_is', models.IntegerField(default=0)),
+                ('yaptirilan_is_puani', models.IntegerField(default=0)),
+                ('teslim_alinmayan_is', models.IntegerField(default=0)),
             ],
             options={
             },
             bases=(models.Model,),
         ),
         migrations.CreateModel(
-            name='sehir',
+            name='YapilacakIs',
             fields=[
-                ('sehirId', models.AutoField(serialize=False, primary_key=True)),
-                ('sehirAdi', models.CharField(max_length=40)),
-            ],
-            options={
-            },
-            bases=(models.Model,),
-        ),
-        migrations.CreateModel(
-            name='yapilacakIs',
-            fields=[
-                ('isId', models.AutoField(serialize=False, primary_key=True)),
+                ('is_id', models.AutoField(serialize=False, primary_key=True)),
                 ('tanimi', models.CharField(max_length=140)),
-                ('baslamaTarihi', models.DateTimeField()),
-                ('bitisTarihi', models.DateTimeField()),
+                ('baslama_tarihi', models.DateTimeField()),
+                ('bitis_tarihi', models.DateTimeField()),
                 ('detaylar', models.CharField(max_length=140)),
-                ('etiketler', models.ManyToManyField(to='yonetim.etiket')),
-                ('sehir', models.ForeignKey(to='yonetim.sehir')),
+                ('etiketler', models.ManyToManyField(to='yonetim.Etiket')),
+                ('sehir', models.ForeignKey(to='yonetim.Sehir')),
             ],
             options={
             },
             bases=(models.Model,),
         ),
         migrations.AddField(
-            model_name='kullanici',
+            model_name='userprofile',
             name='isler',
-            field=models.ManyToManyField(to='yonetim.yapilacakIs', blank=True),
+            field=models.ManyToManyField(to='yonetim.YapilacakIs', blank=True),
             preserve_default=True,
         ),
         migrations.AddField(
-            model_name='kullanici',
+            model_name='userprofile',
             name='user',
             field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
             preserve_default=True,
