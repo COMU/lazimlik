@@ -39,6 +39,8 @@ def user(request):
 
 	if request.POST:
 		form = UserProfileForm({'user':request.user.id})
+		initial_value = {'user':request.user.id,'bitirilen_is_puani':0,'teslim_edilmeyen_is':0,'yaptirilan_is_puani':0,'teslim_alinmayan_is':0,'rumuz':request.POST['rumuz']}
+		form = UserProfileForm(initial_value)
 		print form
 		form.save()
 		messages.success(request, 'Rumuz eklendi.')
