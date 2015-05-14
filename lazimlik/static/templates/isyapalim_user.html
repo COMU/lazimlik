@@ -9,7 +9,7 @@
         		<span class="icon-bar"></span>
         		<span class="icon-bar"></span>
       		</button>
-			<a class="navbar-brand" href='{% url "anasayfa" %}'><b>Lazımlık</b></a>
+			<a class="navbar-brand" href='{% url "home" %}'><b>Lazımlık</b></a>
     	</div>
 			<form class="navbar-form navbar-right" role="search">
 				<div class="form-group">
@@ -61,6 +61,10 @@
 							<td>{{ is.sehir }}</td>
 						</div>
 					</tr>
+
+					<div class="fieldWrapper">
+						<a href="{% url 'is_al' %}" type="button" class="btn btn-success navbar-btn">İşi Al</a>
+					</div>
 
 				</table>
 			</div>
