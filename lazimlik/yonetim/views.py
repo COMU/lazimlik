@@ -64,3 +64,9 @@ def isyapalim_user(request):
 
 def is_al(request):
 	return render_to_response("userdetail.html")
+
+def search(request):
+    query = request.GET['q']
+    t = loader.get_template('results.html')
+    c = Context({ 'query': query,})
+    return HttpResponse(t.render(c))

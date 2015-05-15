@@ -23,6 +23,8 @@ urlpatterns = patterns('',
 	url(r'^login/$', 'social_app.views.login', name='login'),
 	url(r'^logout/$', 'social_app.views.logout', name='logout'),
 	url(r'^is_al/$', 'yonetim.views.is_al', name='is_al'),
+	url(r'^results/$', 'yonetim.views.results', name='results'),
+	url(r'^search/$', 'yonetim.views.search', name='search'),
 )
 
 if settings.DEBUG:
