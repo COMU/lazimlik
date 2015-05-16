@@ -1,11 +1,13 @@
 from django import forms
 
-from .models import YapilacakIs
-from .models import UserProfile
+from models import Is
+from models import UserProfile
 
-class YapilacakIsForm(forms.ModelForm):
+class IsForm(forms.ModelForm):
 	class Meta:
-		model = YapilacakIs
+		model = Is
+		fields = '__all__'
+		exclude = ['olusturan_kullanici', 'isi_yapan_kullanici']
 
 class UserProfileForm(forms.ModelForm):
 	class Meta:
@@ -13,3 +15,4 @@ class UserProfileForm(forms.ModelForm):
 		widgets={
 			'user':forms.HiddenInput(),
 		}
+		fields = '__all__' 

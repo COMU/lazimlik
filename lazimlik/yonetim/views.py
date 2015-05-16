@@ -7,10 +7,8 @@ from django.contrib.auth.decorators import login_required
 from django.contrib.auth.models import User
 
 from django import forms
-from .forms import YapilacakIsForm
-from .forms import UserProfileForm
-from .models import YapilacakIs
-from .models import UserProfile
+from forms import UserProfileForm, IsForm
+from models import UserProfile, Is, Sehir
 
 
 def anasayfa(request):
@@ -24,55 +22,72 @@ def about_user(request):
 	return render_to_response("about_user.html")
 
 @login_required
-def isverelim(request):
-
-	form = YapilacakIsForm(request.POST or None)
-
-	if form.is_valid():
-		save_it = form.save(commit=False)
-		save_it.save()
-		messages.success(request, 'İş eklendi.')
-		return HttpResponseRedirect('/isyapalim')
-
-	return render_to_response("isverelim.html", locals(), context_instance=RequestContext(request))
+def is_olustur(request):
+	form = IsForm()
+	if request.POST:
+		initial_value = {'olusturan_kullanici': request.user,
+						 'tanim': request.POST['tanim'],
+						 'baslangic_tarihi': request.POST['baslangic_tarihi'],
+						 'bitis_tarihi': request.POST['bitis_tarihi'],
+						 'detay': request.POST['detay']
+						 #TODO 'etiketler': request.POST['etiketler'],
+						}
+		form = IsForm(initial_value)
+		if form.is_valid():
+			_is = form.save(commit=False)
+			_is.olusturan_kullanici = request.user
+			_is.save()
+			messages.success(request, 'İş eklendi.')
+			return HttpResponseRedirect('/isyapalim')
+		else:
+			#TODO form valid degilse ne yapmak lazim?
+			pass
+	else:	
+		return render_to_response("isverelim.html", locals(), context_instance=RequestContext(request))
 
 @login_required
-def user(request):
-    if request.POST:
-        form = UserProfileForm({'user':request.user.id})
-        initial_value = {'user':request.user.id,
-                         'bitirilen_is_puani':0,
-                         'teslim_edilmeyen_is':0,
-                         'yaptirilan_is_puani':0,
-                         'teslim_alinmayan_is':0,
-                         'verdigi_isler':None,
-                         'aldigi_isler':None,
-                         'rumuz':request.POST['rumuz']}
-        form = UserProfileForm(initial_value)
-        print form
-        form.save()
-        messages.success(request, 'Rumuz eklendi.')
-        return HttpResponseRedirect('/home')
-    else:
-        if UserProfile.objects.filter(user=request.user).count() > 0:
-            return HttpResponseRedirect('/home')
-        else:
-            form = UserProfileForm(request.POST or None)
-            form.fields['user'].widget = forms.HiddenInput()
-            return render_to_response("user.html", locals(), context_instance=RequestContext(request))
+def profil_olustur(request):
+	if request.POST:
+		initial_value = {'user':request.user.id,
+						 'bitirilen_is_puani':0,
+						 'teslim_edilmeyen_is':0,
+						 'yaptirilan_is_puani':0,
+						 'teslim_alinmayan_is':0, 
+						 'verdigi_isler':None, 
+						 'aldigi_isler':None, 
+						 'rumuz':request.POST['rumuz']}
+		form = UserProfileForm(initial_value)
+		print form
+		form.save()
+		messages.success(request, 'Rumuz eklendi.')
+		return HttpResponseRedirect('/home')
+	else:
+		if UserProfile.objects.filter(user=request.user).count() > 0:
+			return HttpResponseRedirect('/home')
+		else:
+			form = UserProfileForm(request.POST or None)
+			form.fields['user'].widget = forms.HiddenInput()
+			return render_to_response("user.html", locals(), context_instance=RequestContext(request))
 
 
 def isyapalim(request):
-	isler = YapilacakIs.objects.all()
+	isler = Is.objects.all()
 	return render_to_response("isyapalim.html",locals(), context_instance=RequestContext(request))
 
 def isyapalim_user(request):
-	isler = YapilacakIs.objects.all()
+	isler = Is.objects.all()
 	return render_to_response("isyapalim_user.html",locals(), context_instance=RequestContext(request))
 
-def is_al(request):
-	UserProfile(request.user).isler=YapilacakIs.is_id(counter)
-	return render_to_response("userdetail.html")
+def is_al(request, is_id):
+	try:
+		_is = Is.objects.get(id=is_id)
+		_is.isi_yapan_kullanici = request.user
+		_is.save()
+		return render_to_response("userdetail.html")
+	except Exception:
+		print "hata olustu"
+		isler = Is.objects.all()
+		return render_to_response("isyapalim_user.html",locals(), context_instance=RequestContext(request))
 
 def search(request):
 	query = request.GET['q']

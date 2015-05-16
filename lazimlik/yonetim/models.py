@@ -1,5 +1,6 @@
 from django.db import models
 from django.contrib.auth.models import User
+from datetime import datetime 
 
 class Sehir(models.Model):
 	sehir_id = models.AutoField(primary_key = True)
@@ -15,37 +16,24 @@ class Etiket(models.Model):
 	def __unicode__(self):
 		return self.etiket_adi
 
-class YapilacakIs(models.Model):
-	is_id = models.AutoField(primary_key = True)
-	tanimi = models.CharField(max_length = 140)
-	baslama_tarihi = models.DateTimeField()
+class Is(models.Model):
+	tanim = models.CharField(max_length=140)
+	baslangic_tarihi = models.DateTimeField(default = datetime.now)
 	bitis_tarihi = models.DateTimeField()
-	detaylar = models.CharField(max_length = 140)
-	etiketler = models.ManyToManyField(Etiket)     
-	sehir = models.ForeignKey(Sehir)
+	detay = models.CharField(max_length=140)
+	#TODO etiketler = models.ManyToManyField(Etiket)
+	sehir = models.ForeignKey(Sehir, blank=True, null=True)
+	olusturan_kullanici = models.ForeignKey(User, related_name="olusturan_kullanici")
+	isi_yapan_kullanici = models.ForeignKey(User, related_name="isi_yapan_kullanici", null=True)
 
 	def __unicode__(self):
-		return self.tanimi
-
-class VerilenIs(models.Model):
-	is_id = models.AutoField(primary_key = True)
-	tanimi = models.CharField(max_length = 140)
-	baslama_tarihi = models.DateTimeField()
-	bitis_tarihi = models.DateTimeField()
-	detaylar = models.CharField(max_length = 140)
-	etiketler = models.ManyToManyField(Etiket)     
-	sehir = models.ForeignKey(Sehir)
-
-	def __unicode__(self):
-		return self.tanimi
+		return self.tanim
 
 class UserProfile(models.Model):
 	user = models.ForeignKey(User)
 	rumuz = models.CharField(max_length = 15, unique=True)
 	bitirilen_is_puani = models.IntegerField(default=0)
 	teslim_edilmeyen_is = models.IntegerField(default=0)
-	verdigi_isler = models.ManyToManyField(VerilenIs, blank=True)
-	aldigi_isler = models.ManyToManyField(YapilacakIs, blank=True)
 	yaptirilan_is_puani = models.IntegerField(default=0)
 	teslim_alinmayan_is = models.IntegerField(default=0)
 

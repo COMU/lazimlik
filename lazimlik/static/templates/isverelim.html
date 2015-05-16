@@ -13,65 +13,7 @@
 <div class="row">
 	<div class='col-md-6'>
 		<table class="table table-bordered">
-			<tr>
-				<div class="fieldWrapper">
-					<td>
-						<label>Tanımı:</label>
-						{{ form.tanimi.errors }}
-					</td>
-					<td>{{ form.tanimi }}</td>
-				</div>
-			</tr>
-
-			<tr>
-				<div class="fieldWrapper">
-					<td>
-						<label>Başlangıç Tarihi:</label>
-						{{ form.baslama_tarihi.errors }}
-					</td>
-					<td>{{ form.baslama_tarihi }}</td>
-				</div>
-			</tr>
-
-			<tr>
-				<div class="fieldWrapper">
-					<td>
-						<label>Bitiş Tarihi:</label>
-						{{ form.bitis_tarihi.errors }}
-					</td>
-					<td>{{ form.bitis_tarihi }}</td>
-				</div>
-			</tr>
-
-			<tr>
-				<div class="fieldWrapper">
-					<td>
-						<label>Detaylar:</label>
-						{{ form.detaylar.errors }}
-					</td>
-					<td>{{ form.detaylar }}</td>
-				</div>
-			</tr>
-
-			<tr>
-				<div class="fieldWrapper">
-					<td>
-						<label>Etiketler:</label>
-						{{ form.etiketler.errors }}
-					</td>
-					<td>{{ form.etiketler }}</td>
-				</div>
-			</tr>
-
-			<tr>
-				<div class="fieldWrapper">
-					<td>
-						<label>Yer:</label>
-						{{ form.sehir.errors }}
-					</td>
-					<td>{{ form.sehir }}</td>
-				</div>
-			</tr>
+		{{form.as_table}}
 		</table>
 	</div>
 	<input type='submit' class='btn btn-success'>
