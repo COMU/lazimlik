@@ -36,11 +36,26 @@ class Migration(migrations.Migration):
             name='UserProfile',
             fields=[
                 ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
-                ('rumuz', models.CharField(max_length=15)),
+                ('rumuz', models.CharField(unique=True, max_length=15)),
                 ('bitirilen_is_puani', models.IntegerField(default=0)),
                 ('teslim_edilmeyen_is', models.IntegerField(default=0)),
                 ('yaptirilan_is_puani', models.IntegerField(default=0)),
                 ('teslim_alinmayan_is', models.IntegerField(default=0)),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='VerilenIs',
+            fields=[
+                ('is_id', models.AutoField(serialize=False, primary_key=True)),
+                ('tanimi', models.CharField(max_length=140)),
+                ('baslama_tarihi', models.DateTimeField()),
+                ('bitis_tarihi', models.DateTimeField()),
+                ('detaylar', models.CharField(max_length=140)),
+                ('etiketler', models.ManyToManyField(to='yonetim.Etiket')),
+                ('sehir', models.ForeignKey(to='yonetim.Sehir')),
             ],
             options={
             },
@@ -63,7 +78,7 @@ class Migration(migrations.Migration):
         ),
         migrations.AddField(
             model_name='userprofile',
-            name='isler',
+            name='aldigi_isler',
             field=models.ManyToManyField(to='yonetim.YapilacakIs', blank=True),
             preserve_default=True,
         ),
@@ -71,6 +86,12 @@ class Migration(migrations.Migration):
             model_name='userprofile',
             name='user',
             field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
+            preserve_default=True,
+        ),
+        migrations.AddField(
+            model_name='userprofile',
+            name='verdigi_isler',
+            field=models.ManyToManyField(to='yonetim.VerilenIs', blank=True),
             preserve_default=True,
         ),
     ]

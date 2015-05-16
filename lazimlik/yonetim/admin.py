@@ -4,4 +4,5 @@ from yonetim.models import *
 admin.site.register(Sehir)
 admin.site.register(Etiket)
 admin.site.register(YapilacakIs)
+admin.site.register(VerilenIs)
 admin.site.register(UserProfile)
