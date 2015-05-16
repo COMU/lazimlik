@@ -38,8 +38,11 @@ def isverelim(request):
 
 @login_required
 def user(request):
-	if UserProfile.objects.get(user=request.user):
-		return HttpResponseRedirect('/home')
+	try:
+		if UserProfile.objects.get(user=request.user):
+			return HttpResponseRedirect('/home')
+	except UserProfile.DoesNotExist:
+		user = None
 	else:
 		form = UserProfileForm(request.POST or None)
 		form.fields['user'].widget = forms.HiddenInput()
