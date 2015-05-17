@@ -6,7 +6,52 @@
 
 {% block icerik %}
 
-Yapacaginiz is sisteme kaydedildi
+{% endblock %}
+{% block icerik %}
+
+	<div class="row">
+			<div class='col-md-6'>
+				<table class="table table-bordered">
+					<tr>
+						<div class="fieldWrapper">
+							<td><label>Tanımı:</label></td>
+							<td>{{ is.tanimi }}</td>
+						</div>
+					</tr>
+
+					<tr>
+						<div class="fieldWrapper">
+							<td><label>Başlangıç Tarihi:</label></td>
+							<td>{{ is.baslama_tarihi }}</td>
+						</div>
+					</tr>
+
+					<tr>
+						<div class="fieldWrapper">
+							<td><label>Bitiş Tarihi:</label></td>
+							<td>{{ is.bitis_tarihi }}</td>
+						</div>
+					</tr>
+
+					<tr>
+						<div class="fieldWrapper">
+							<td><label>Detaylar:</label></td>
+							<td>{{ is.detaylar }}</td>
+						</div>
+					</tr>
+
+					<tr>
+						<div class="fieldWrapper">
+							<td><label>Yer:</label></td>
+							<td>{{ is.sehir }}</td>
+						</div>
+					</tr>
+
+				</table>
+			</div>
+	</div>
+
+{% endblock %}
 
 {% endblock %}
 

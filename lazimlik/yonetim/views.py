@@ -12,6 +12,8 @@ from models import UserProfile, Is, Sehir
 
 
 def anasayfa(request):
+	if request.user.is_authenticated():
+		return render_to_response("home.html")
 	workers = UserProfile.objects.all().order_by("bitirilen_is_puani")    
 	return render_to_response("anasayfa.html", locals(), context_instance=RequestContext(request))
 
@@ -38,7 +40,7 @@ def is_olustur(request):
 			_is.olusturan_kullanici = request.user
 			_is.save()
 			messages.success(request, 'İş eklendi.')
-			return HttpResponseRedirect('/isyapalim')
+			return HttpResponseRedirect("/isyapalim_user")
 		else:
 			#TODO form valid degilse ne yapmak lazim?
 			pass
@@ -72,22 +74,23 @@ def profil_olustur(request):
 
 def isyapalim(request):
 	isler = Is.objects.all()
-	return render_to_response("isyapalim.html",locals(), context_instance=RequestContext(request))
+	return render_to_response("isyapalim.html", locals(), context_instance=RequestContext(request))
 
 def isyapalim_user(request):
 	isler = Is.objects.all()
-	return render_to_response("isyapalim_user.html",locals(), context_instance=RequestContext(request))
+	return render_to_response("isyapalim_user.html", locals(), context_instance=RequestContext(request))
 
 def is_al(request, is_id):
 	try:
 		_is = Is.objects.get(id=is_id)
-		_is.isi_yapan_kullanici = request.user
+		_is.isi_yfapan_kullanici = request.user
 		_is.save()
+		form = IsForm.objects.filter(isi_yapan_kullanici=request.user)
 		return render_to_response("userdetail.html")
 	except Exception:
 		print "hata olustu"
 		isler = Is.objects.all()
-		return render_to_response("isyapalim_user.html",locals(), context_instance=RequestContext(request))
+		return render_to_response("isyapalim_user.html", locals(), context_instance=RequestContext(request))
 
 def search(request):
 	query = request.GET['q']
