@@ -97,6 +97,9 @@ def is_al(request, is_id):
 		isler = Is.objects.all()
 		return render_to_response("isyapalim_user.html", locals(), context_instance=RequestContext(request))
 
+def is_teslim_et(request, is_id):
+	return render_to_response("is_teslim_et.html", locals(), context_instance=RequestContext(request))
+
 def search(request):
 	query = request.GET['q']
 	t = loader.get_template('results.html')
@@ -107,5 +110,6 @@ def results(request):
 	return render_to_response("results.html")
 
 def userdetail(request):
+	kullanici = UserProfile.objects.filter(user=request.user)
 	islist = Is.objects.filter(isi_yapan_kullanici=request.user)
 	return render_to_response("userdetail.html", locals(), context_instance=RequestContext(request))

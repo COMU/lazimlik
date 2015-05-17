@@ -7,7 +7,14 @@
 {% block icerik %}
 
 	<div class="row">
-		<h1 align="center" style="color: #FFFFFF;">Kullanıcı Detayları</h1>
+		<div class='col-md-6'>
+			<h1 style="color: #FFFFFF;">Kullanıcı Detayları</h1>
+			{% for n in kullanici %}
+				<label>Kullanıcı:</label>{{ n.user }}
+				<label>Rumuz:</label>{{ n.rumuz }}
+			{% endfor %}
+		</div>
+
 		{% for is in islist %}
 			<div class='col-md-6'>
 				<table class="table table-bordered">
@@ -45,6 +52,10 @@
 							<td>{{ is.sehir }}</td>
 						</div>
 					</tr>
+
+					<div class="fieldWrapper">
+						<a href="{% url 'is_teslim_et' is.id %}" type="button" class="btn btn-success navbar-btn">İşi Teslim Et</a>
+					</div>
 
 				</table>
 			</div>

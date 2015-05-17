@@ -15,6 +15,7 @@
     			<li><a href='{% url "isyapalim_user" %}'>İş Yap</a></li>
     		</ul>
     		<ul class="nav navbar-nav navbar-right">
+    			<a href="{% url 'userdetail' %}" style="color: #FFFFFF;" >{{ request.user }}</a>
     			<a href="{% url 'logout' %}" type="button" class="btn btn-success navbar-btn">Çıkış</a>
     		</ul>
     	</div>
