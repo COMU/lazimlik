@@ -91,10 +91,9 @@ def is_al(request, is_id):
 		_is = Is.objects.get(id=is_id)
 		_is.isi_yapan_kullanici = request.user
 		_is.save()
-		form = IsForm.objects.filter(isi_yapan_kullanici=request.user)
-		return render_to_response("userdetail.html")
-	except Exception:
-		print "hata olustu"
+		return render_to_response("is_al.html", locals(), context_instance=RequestContext(request))
+	except Exception as e:
+		print '%s (%s)' % (e.message, type(e))
 		isler = Is.objects.all()
 		return render_to_response("isyapalim_user.html", locals(), context_instance=RequestContext(request))
 
@@ -106,3 +105,7 @@ def search(request):
 
 def results(request):
 	return render_to_response("results.html")
+
+def userdetail(request):
+	islist = Is.objects.filter(isi_yapan_kullanici=request.user)
+	return render_to_response("userdetail.html", locals(), context_instance=RequestContext(request))

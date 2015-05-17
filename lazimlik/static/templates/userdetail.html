@@ -6,23 +6,22 @@
 
 {% block icerik %}
 
-{% endblock %}
-{% block icerik %}
-
 	<div class="row">
+		<h1 align="center" style="color: #FFFFFF;">Kullanıcı Detayları</h1>
+		{% for is in islist %}
 			<div class='col-md-6'>
 				<table class="table table-bordered">
 					<tr>
 						<div class="fieldWrapper">
 							<td><label>Tanımı:</label></td>
-							<td>{{ is.tanimi }}</td>
+							<td>{{ is.tanim }}</td>
 						</div>
 					</tr>
 
 					<tr>
 						<div class="fieldWrapper">
 							<td><label>Başlangıç Tarihi:</label></td>
-							<td>{{ is.baslama_tarihi }}</td>
+							<td>{{ is.baslangic_tarihi }}</td>
 						</div>
 					</tr>
 
@@ -36,7 +35,7 @@
 					<tr>
 						<div class="fieldWrapper">
 							<td><label>Detaylar:</label></td>
-							<td>{{ is.detaylar }}</td>
+							<td>{{ is.detay }}</td>
 						</div>
 					</tr>
 
@@ -49,11 +48,9 @@
 
 				</table>
 			</div>
+		{% endfor %}
 	</div>
 
 {% endblock %}
-
-{% endblock %}
-
 
 
