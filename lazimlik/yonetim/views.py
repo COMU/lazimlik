@@ -13,13 +13,16 @@ from models import UserProfile, Is, Sehir
 
 def anasayfa(request):
 	if request.user.is_authenticated():
-		return render_to_response("home.html")
+		return HttpResponseRedirect("/home")
 	workers = UserProfile.objects.all().order_by("bitirilen_is_puani")    
 	return render_to_response("anasayfa.html", locals(), context_instance=RequestContext(request))
 
 def about(request):
+	if request.user.is_authenticated():
+		return HttpResponseRedirect("/about_user")
 	return render_to_response("about.html")
 
+@login_required
 def about_user(request):
 	return render_to_response("about_user.html")
 
@@ -72,10 +75,13 @@ def profil_olustur(request):
 			return render_to_response("user.html", locals(), context_instance=RequestContext(request))
 
 
-def isyapalim(request):
+def is_goruntule(request):
+	if request.user.is_authenticated():
+		return HttpResponseRedirect("/isyapalim_user")
 	isler = Is.objects.all()
-	return render_to_response("isyapalim.html", locals(), context_instance=RequestContext(request))
+	return render_to_response("is_goruntule.html", locals(), context_instance=RequestContext(request))
 
+@login_required
 def isyapalim_user(request):
 	isler = Is.objects.all()
 	return render_to_response("isyapalim_user.html", locals(), context_instance=RequestContext(request))
@@ -83,7 +89,7 @@ def isyapalim_user(request):
 def is_al(request, is_id):
 	try:
 		_is = Is.objects.get(id=is_id)
-		_is.isi_yfapan_kullanici = request.user
+		_is.isi_yapan_kullanici = request.user
 		_is.save()
 		form = IsForm.objects.filter(isi_yapan_kullanici=request.user)
 		return render_to_response("userdetail.html")
