@@ -80,12 +80,12 @@ def profil_olustur(request):
 def is_goruntule(request):
 	if request.user.is_authenticated():
 		return HttpResponseRedirect("/isyapalim_user")
-	isler = Is.objects.all()
+	isler = Is.objects.filter(teslim_edildi = False)
 	return render_to_response("is_goruntule.html", locals(), context_instance=RequestContext(request))
 
 @login_required
 def isyapalim_user(request):
-	isler = Is.objects.all()
+	isler = Is.objects.filter(teslim_edildi = False)
 	return render_to_response("isyapalim_user.html", locals(), context_instance=RequestContext(request))
 
 def is_al(request, is_id):
@@ -148,5 +148,5 @@ def userdetail(request):
 	return render_to_response("userdetail.html", locals(), context_instance=RequestContext(request))
 
 def alinan_isler(request):
-	islist = Is.objects.filter(isi_yapan_kullanici=request.user)
+	islist = Is.objects.filter(teslim_edildi = False, isi_yapan_kullanici=request.user)
 	return render_to_response("alinan_isler.html", locals(), context_instance=RequestContext(request))
