@@ -115,6 +115,9 @@ def is_teslim_et(request, is_id):
 	# Load documents for the list page
 	documents = Document.objects.all()
 	# Render list page with the documents and the form
+
+	isno = Is.objects.get(id=is_id)
+	isno.save()
 	return render_to_response("is_teslim_et.html", locals(), context_instance=RequestContext(request))
 
 def search(request):
