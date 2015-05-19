@@ -25,7 +25,7 @@ class Is(models.Model):
 	sehir = models.ForeignKey(Sehir, blank=True, null=True)
 	olusturan_kullanici = models.ForeignKey(User, related_name="olusturan_kullanici")
 	isi_yapan_kullanici = models.ForeignKey(User, related_name="isi_yapan_kullanici", null=True)
-
+	teslim_edildi = models.BooleanField(default=False)
 
 	def __unicode__(self):
 		return self.tanim
