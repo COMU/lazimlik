@@ -101,6 +101,8 @@ def is_al(request, is_id):
 
 def is_teslim_et(request, is_id):
 	if request.method == 'POST':
+		teslim = Is.objects.get(id=is_id)
+		teslim.teslim_edildi = True
 		form = DocumentForm(request.POST, request.FILES)
 		if form.is_valid():
 			newdoc = Document(docfile = request.FILES['docfile'])

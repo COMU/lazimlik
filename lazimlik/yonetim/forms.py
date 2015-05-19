@@ -7,7 +7,7 @@ class IsForm(forms.ModelForm):
 	class Meta:
 		model = Is
 		fields = '__all__'
-		exclude = ['olusturan_kullanici', 'isi_yapan_kullanici']
+		exclude = ['olusturan_kullanici', 'isi_yapan_kullanici', 'teslim_edildi']
 
 class UserProfileForm(forms.ModelForm):
 	class Meta:
