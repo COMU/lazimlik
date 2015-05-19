@@ -10,6 +10,8 @@ from django import forms
 from forms import UserProfileForm, IsForm
 from models import UserProfile, Is, Sehir
 
+from models import Document
+from forms import DocumentForm
 
 def anasayfa(request):
 	if request.user.is_authenticated():
@@ -98,6 +100,21 @@ def is_al(request, is_id):
 		return render_to_response("isyapalim_user.html", locals(), context_instance=RequestContext(request))
 
 def is_teslim_et(request, is_id):
+	# Handle file upload
+	if request.method == 'POST':
+		form = DocumentForm(request.POST, request.FILES)
+		if form.is_valid():
+			newdoc = Document(docfile = request.FILES['docfile'])
+			newdoc.save()
+
+			# Redirect to the document list after POST
+			return HttpResponseRedirect("/home")
+	else:
+		form = DocumentForm() # A empty, unbound form
+
+	# Load documents for the list page
+	documents = Document.objects.all()
+	# Render list page with the documents and the form
 	return render_to_response("is_teslim_et.html", locals(), context_instance=RequestContext(request))
 
 def search(request):

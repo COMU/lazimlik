@@ -5,6 +5,30 @@
 {% endblock %}
 
 {% block icerik %}
+
+{% if documents %}
+			<ul>
+			{% for document in documents %}
+				<li><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></li>
+			{% endfor %}
+			</ul>
+		{% else %}
+			<p>No documents.</p>
+		{% endif %}
+
+		<!-- Upload form. Note enctype attribute! -->
+		<form action="{% url 'is_teslim_et' is.id %}" method="post" enctype="multipart/form-data">
+			{% csrf_token %}
+			<p>{{ form.non_field_errors }}</p>
+			<p>{{ form.docfile.label_tag }} {{ form.docfile.help_text }}</p>
+			<p>
+				{{ form.docfile.errors }}
+				{{ form.docfile }}
+			</p>
+			<p><input type="submit" value="Upload" /></p>
+		</form>
+
+
 	<div class="jumbotron" style="background-image: url(/media/back1.jpg);">
 		<div class="container">
 			<h1 align="center" style="color: #FFFFFF;">İş başarıyla teslim edildi!</h1>

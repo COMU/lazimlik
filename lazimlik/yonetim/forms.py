@@ -15,4 +15,9 @@ class UserProfileForm(forms.ModelForm):
 		widgets={
 			'user':forms.HiddenInput(),
 		}
-		fields = '__all__' 
+		fields = '__all__'
+
+class DocumentForm(forms.Form):
+	docfile = forms.FileField(
+		label='Select a file'
+	)
