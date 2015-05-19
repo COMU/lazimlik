@@ -2,6 +2,7 @@
 from __future__ import unicode_literals
 
 from django.db import models, migrations
+import datetime
 from django.conf import settings
 
 
@@ -13,10 +14,38 @@ class Migration(migrations.Migration):
 
     operations = [
         migrations.CreateModel(
+            name='Document',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('docfile', models.FileField(upload_to=b'documents/%Y/%m/%d')),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
             name='Etiket',
             fields=[
                 ('etiket_id', models.AutoField(serialize=False, primary_key=True)),
                 ('etiket_adi', models.CharField(max_length=40)),
+            ],
+            options={
+            },
+            bases=(models.Model,),
+        ),
+        migrations.CreateModel(
+            name='Is',
+            fields=[
+                ('id', models.AutoField(verbose_name='ID', serialize=False, auto_created=True, primary_key=True)),
+                ('tanim', models.CharField(max_length=140)),
+                ('baslangic_tarihi', models.DateTimeField(default=datetime.datetime.now)),
+                ('bitis_tarihi', models.DateTimeField()),
+                ('detay', models.CharField(max_length=140)),
+                ('teslim_edildi', models.BooleanField(default=False)),
+                ('status', models.IntegerField(default=1, choices=[(1, b'Henuz yapilmadi'), (2, b'Yapiliyor'), (3, b'Yapildi'), (4, b'Onaylandi')])),
+                ('isi_yapan_kullanici', models.ForeignKey(related_name='isi_yapan_kullanici', to=settings.AUTH_USER_MODEL, null=True)),
+                ('materyal', models.OneToOneField(to='yonetim.Document')),
+                ('olusturan_kullanici', models.ForeignKey(related_name='olusturan_kullanici', to=settings.AUTH_USER_MODEL)),
             ],
             options={
             },
@@ -41,57 +70,16 @@ class Migration(migrations.Migration):
                 ('teslim_edilmeyen_is', models.IntegerField(default=0)),
                 ('yaptirilan_is_puani', models.IntegerField(default=0)),
                 ('teslim_alinmayan_is', models.IntegerField(default=0)),
-            ],
-            options={
-            },
-            bases=(models.Model,),
-        ),
-        migrations.CreateModel(
-            name='VerilenIs',
-            fields=[
-                ('is_id', models.AutoField(serialize=False, primary_key=True)),
-                ('tanimi', models.CharField(max_length=140)),
-                ('baslama_tarihi', models.DateTimeField()),
-                ('bitis_tarihi', models.DateTimeField()),
-                ('detaylar', models.CharField(max_length=140)),
-                ('etiketler', models.ManyToManyField(to='yonetim.Etiket')),
-                ('sehir', models.ForeignKey(to='yonetim.Sehir')),
-            ],
-            options={
-            },
-            bases=(models.Model,),
-        ),
-        migrations.CreateModel(
-            name='YapilacakIs',
-            fields=[
-                ('is_id', models.AutoField(serialize=False, primary_key=True)),
-                ('tanimi', models.CharField(max_length=140)),
-                ('baslama_tarihi', models.DateTimeField()),
-                ('bitis_tarihi', models.DateTimeField()),
-                ('detaylar', models.CharField(max_length=140)),
-                ('etiketler', models.ManyToManyField(to='yonetim.Etiket')),
-                ('sehir', models.ForeignKey(to='yonetim.Sehir')),
+                ('user', models.ForeignKey(to=settings.AUTH_USER_MODEL)),
             ],
             options={
             },
             bases=(models.Model,),
         ),
         migrations.AddField(
-            model_name='userprofile',
-            name='aldigi_isler',
-            field=models.ManyToManyField(to='yonetim.YapilacakIs', blank=True),
-            preserve_default=True,
-        ),
-        migrations.AddField(
-            model_name='userprofile',
-            name='user',
-            field=models.ForeignKey(to=settings.AUTH_USER_MODEL),
-            preserve_default=True,
-        ),
-        migrations.AddField(
-            model_name='userprofile',
-            name='verdigi_isler',
-            field=models.ManyToManyField(to='yonetim.VerilenIs', blank=True),
+            model_name='is',
+            name='sehir',
+            field=models.ForeignKey(blank=True, to='yonetim.Sehir', null=True),
             preserve_default=True,
         ),
     ]

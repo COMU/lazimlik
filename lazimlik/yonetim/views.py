@@ -36,8 +36,9 @@ def is_olustur(request):
 						 'tanim': request.POST['tanim'],
 						 'baslangic_tarihi': request.POST['baslangic_tarihi'],
 						 'bitis_tarihi': request.POST['bitis_tarihi'],
-						 'detay': request.POST['detay']
+						 'detay': request.POST['detay'],
 						 #TODO 'etiketler': request.POST['etiketler'],
+						 'status': 1
 						}
 		form = IsForm(initial_value)
 		if form.is_valid():
@@ -92,6 +93,7 @@ def is_al(request, is_id):
 	try:
 		_is = Is.objects.get(id=is_id)
 		_is.isi_yapan_kullanici = request.user
+		_is.status = 2
 		_is.save()
 		return render_to_response("is_al.html", locals(), context_instance=RequestContext(request))
 	except Exception as e:
@@ -104,6 +106,7 @@ def is_teslim_et(request, is_id):
 	if request.method == 'POST':
 		teslim = Is.objects.get(id=is_id)
 		teslim.teslim_edildi = True
+		teslim.status = 3 
 		teslim.save()
 
 		form = DocumentForm(request.POST, request.FILES)

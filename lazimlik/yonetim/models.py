@@ -16,6 +16,10 @@ class Etiket(models.Model):
 	def __unicode__(self):
 		return self.etiket_adi
 
+
+class Document(models.Model):
+	docfile = models.FileField(upload_to='documents/%Y/%m/%d')
+
 class Is(models.Model):
 	tanim = models.CharField(max_length=140)
 	baslangic_tarihi = models.DateTimeField(default = datetime.now)
@@ -31,6 +35,7 @@ class Is(models.Model):
 		(3, "Yapildi"), 
 		(4, "Onaylandi")),
 	default = 1)
+	materyal = models.OneToOneField(Document)
 
 	def __unicode__(self):
 		return self.tanim
@@ -45,6 +50,3 @@ class UserProfile(models.Model):
 
 	def __unicode__(self):
 		return self.user.username
-
-class Document(models.Model):
-    docfile = models.FileField(upload_to='documents/%Y/%m/%d')
