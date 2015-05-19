@@ -111,5 +111,8 @@ def results(request):
 
 def userdetail(request):
 	kullanici = UserProfile.objects.filter(user=request.user)
-	islist = Is.objects.filter(isi_yapan_kullanici=request.user)
 	return render_to_response("userdetail.html", locals(), context_instance=RequestContext(request))
+
+def alinan_isler(request):
+	islist = Is.objects.filter(isi_yapan_kullanici=request.user)
+	return render_to_response("alinan_isler.html", locals(), context_instance=RequestContext(request))
