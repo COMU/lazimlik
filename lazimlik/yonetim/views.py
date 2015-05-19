@@ -100,9 +100,12 @@ def is_al(request, is_id):
 		return render_to_response("isyapalim_user.html", locals(), context_instance=RequestContext(request))
 
 def is_teslim_et(request, is_id):
+	isno = Is.objects.get(id=is_id)
 	if request.method == 'POST':
 		teslim = Is.objects.get(id=is_id)
 		teslim.teslim_edildi = True
+		teslim.save()
+
 		form = DocumentForm(request.POST, request.FILES)
 		if form.is_valid():
 			newdoc = Document(docfile = request.FILES['docfile'])
@@ -114,8 +117,6 @@ def is_teslim_et(request, is_id):
 
 	documents = Document.objects.all()
 
-	isno = Is.objects.get(id=is_id)
-	isno.save()
 	return render_to_response("is_teslim_et.html", locals(), context_instance=RequestContext(request))
 
 def is_havuzu(request):
