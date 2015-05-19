@@ -44,7 +44,6 @@ class Migration(migrations.Migration):
                 ('teslim_edildi', models.BooleanField(default=False)),
                 ('status', models.IntegerField(default=1, choices=[(1, b'Henuz yapilmadi'), (2, b'Yapiliyor'), (3, b'Yapildi'), (4, b'Onaylandi')])),
                 ('isi_yapan_kullanici', models.ForeignKey(related_name='isi_yapan_kullanici', to=settings.AUTH_USER_MODEL, null=True)),
-                ('materyal', models.OneToOneField(to='yonetim.Document')),
                 ('olusturan_kullanici', models.ForeignKey(related_name='olusturan_kullanici', to=settings.AUTH_USER_MODEL)),
             ],
             options={
@@ -80,6 +79,12 @@ class Migration(migrations.Migration):
             model_name='is',
             name='sehir',
             field=models.ForeignKey(blank=True, to='yonetim.Sehir', null=True),
+            preserve_default=True,
+        ),
+        migrations.AddField(
+            model_name='document',
+            name='isid',
+            field=models.ForeignKey(to='yonetim.Is'),
             preserve_default=True,
         ),
     ]

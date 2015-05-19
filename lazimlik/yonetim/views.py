@@ -112,6 +112,7 @@ def is_teslim_et(request, is_id):
 		form = DocumentForm(request.POST, request.FILES)
 		if form.is_valid():
 			newdoc = Document(docfile = request.FILES['docfile'])
+			newdoc.isid = Is.objects.get(id=is_id)
 			newdoc.save()
 
 			return HttpResponseRedirect("/home")
