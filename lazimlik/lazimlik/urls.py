@@ -31,8 +31,6 @@ urlpatterns = patterns('',
 	url(r'^logout/$', 'social_app.views.logout', name='logout'),
 	url(r'^is_al/(?P<is_id>[0-9]+)', 'yonetim.views.is_al', name='is_al'),
 	url(r'^is_teslim_et/(?P<is_id>[0-9]+)', 'yonetim.views.is_teslim_et', name='is_teslim_et'),
-	url(r'^results/$', 'yonetim.views.results', name='results'),
-	url(r'^search/$', 'yonetim.views.search', name='search'),
 )
 
 if settings.DEBUG:

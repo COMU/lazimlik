@@ -11,7 +11,11 @@
 		<ul>
 			{% for document in documents %}
 				<div class="fieldWrapper">
-					<li><td><label>Tanımı:</label></td>
+					<li><td><label>Yapan:</label></td>
+					<td>{{ document.isid.isi_yapan_kullanici }}</td>
+				</div>
+				<div class="fieldWrapper">
+					<td><label>Tanımı:</label></td>
 					<td>{{ document.isid.tanim }}</td>
 				</div>
 				<div class="fieldWrapper">
