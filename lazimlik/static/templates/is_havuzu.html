@@ -6,10 +6,19 @@
 
 {% block icerik %}
 
+	<h1 style="color: #FFFFFF;">Tüm Kullanıcıları Yapmış Olduğu İşler</h1>
 	{% if documents %}
 		<ul>
 			{% for document in documents %}
-				<li><a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></li>
+				<div class="fieldWrapper">
+					<li><td><label>Tanımı:</label></td>
+					<td>{{ document.isid.tanim }}</td>
+				</div>
+				<div class="fieldWrapper">
+					<td><label>Detaylar:</label></td>
+					<td>{{ document.isid.detay }}</td>
+				</div>
+				<a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></li>
 			{% endfor %}
 		</ul>
 	{% else %}

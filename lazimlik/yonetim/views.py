@@ -165,7 +165,7 @@ def teslim_edildi(request):
 
 @login_required
 def teslim_edilen_is(request):
-	islist = Is.objects.filter(status = 3, olusturan_kullanici=request.user)
+	yapilan = Document.objects.filter(isid__status = 3)
 	return render_to_response("teslim_edilen_is.html", locals(), context_instance=RequestContext(request))
 
 @login_required
@@ -174,3 +174,11 @@ def onaylandi(request, is_id):
 	onay.status = 4 
 	onay.save()
 	return render_to_response("onaylandi.html")
+
+@login_required
+def reddedildi(request, is_id):
+	onay = Is.objects.get(id=is_id)
+	onay.status = 1 
+	onay.teslim_edildi = False
+	onay.save()
+	return render_to_response("reddedildi.html")

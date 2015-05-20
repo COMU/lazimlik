@@ -7,6 +7,7 @@
 {% block icerik %}
 
 	<div class="row">
+		<h1 style="color: #FFFFFF;">Alınan İşler</h1>
 		{% for is in islist %}
 			<div class='col-md-6'>
 				<table class="table table-bordered">
@@ -46,7 +47,7 @@
 					</tr>
 
 					<div class="fieldWrapper">
-						<a href="{% url 'is_teslim_et' is.id %}" type="button" class="btn btn-success">İşi Teslim Et</a>
+						<a href="{% url 'is_teslim_et' is.id %}" type="button" class="btn btn-success">Teslim Et</a>
 					</div>
 
 				</table>
