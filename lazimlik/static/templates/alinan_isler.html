@@ -45,15 +45,8 @@
 						</div>
 					</tr>
 
-					<tr>
-						<div class="fieldWrapper">
-							<td><label>Yer:</label></td>
-							<td>{{ is.sehir }}</td>
-						</div>
-					</tr>
-
 					<div class="fieldWrapper">
-						<a href="{% url 'onayla' %}" type="button" class="btn btn-success">Onayla</a>
+						<a href="{% url 'is_teslim_et' is.id %}" type="button" class="btn btn-success">İşi Teslim Et</a>
 					</div>
 
 				</table>

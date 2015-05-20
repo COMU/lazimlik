@@ -77,7 +77,6 @@ def profil_olustur(request):
 			form.fields['user'].widget = forms.HiddenInput()
 			return render_to_response("user.html", locals(), context_instance=RequestContext(request))
 
-
 def is_goruntule(request):
 	if request.user.is_authenticated():
 		return HttpResponseRedirect("/isyapalim_user")
@@ -89,6 +88,7 @@ def isyapalim_user(request):
 	isler = Is.objects.filter(teslim_edildi = False)
 	return render_to_response("isyapalim_user.html", locals(), context_instance=RequestContext(request))
 
+@login_required
 def is_al(request, is_id):
 	try:
 		_is = Is.objects.get(id=is_id)
@@ -101,6 +101,7 @@ def is_al(request, is_id):
 		isler = Is.objects.all()
 		return render_to_response("isyapalim_user.html", locals(), context_instance=RequestContext(request))
 
+@login_required
 def is_teslim_et(request, is_id):
 	isno = Is.objects.get(id=is_id)
 	if request.method == 'POST':
@@ -123,6 +124,7 @@ def is_teslim_et(request, is_id):
 
 	return render_to_response("is_teslim_et.html", locals(), context_instance=RequestContext(request))
 
+@login_required
 def is_havuzu(request):
 	if request.method == 'POST':
 		form = DocumentForm(request.POST, request.FILES)
@@ -147,24 +149,28 @@ def search(request):
 def results(request):
 	return render_to_response("results.html")
 
+@login_required
 def userdetail(request):
 	kullanici = UserProfile.objects.filter(user=request.user)
 	return render_to_response("userdetail.html", locals(), context_instance=RequestContext(request))
 
+@login_required
 def alinan_isler(request):
 	islist = Is.objects.filter(teslim_edildi = False, isi_yapan_kullanici=request.user)
 	return render_to_response("alinan_isler.html", locals(), context_instance=RequestContext(request))
 
+@login_required
 def teslim_edildi(request):
 	return render_to_response("teslim_edildi.html")
 
+@login_required
 def teslim_edilen_is(request):
 	islist = Is.objects.filter(status = 3, olusturan_kullanici=request.user)
 	return render_to_response("teslim_edilen_is.html", locals(), context_instance=RequestContext(request))
 
-def onayladi(request):
+@login_required
+def onaylandi(request, is_id):
 	onay = Is.objects.get(id=is_id)
-	onay.teslim_edildi = True
-	onay.status = 3 
+	onay.status = 4 
 	onay.save()
 	return render_to_response("onaylandi.html")
