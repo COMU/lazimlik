@@ -7,7 +7,7 @@
 {% block icerik %}
 
 	<div class="row">
-		<div class='col-md-6'>
+		<div class='col-md-9'>
 			{% for n in kullanici %}
 			<h1 style="color: #FFFFFF;">Kullanıcı Detayları</h1>
 			<table class="table table-bordered">
@@ -26,12 +26,16 @@
 				</tr>
 			</table>
 			{% endfor %}
-			<div class='col-md-6'>
-				<a href="{% url 'alinan_isler' %}" type="button" class="btn btn-success navbar-btn">Alınan İşler</a>
+			<div class='col-md-3'>
+				<a href="{% url 'alinan_isler' %}" type="button" class="btn btn-success">Alınan İşler</a>
 			</div>
-			<div class='col-md-6'>
-				<a href="{% url 'is_havuzu' %}" type="button" class="btn btn-success navbar-btn">İş Havuzu</a>
+			<div class='col-md-3'>
+				<a href="{% url 'teslim_edilen_is' %}" type="button" class="btn btn-success">Onayla</a>
 			</div>
+			<div class='col-md-3'>
+				<a href="{% url 'is_havuzu' %}" type="button" class="btn btn-success">İş Havuzu</a>
+			</div>
+
 		</div>
 	</div>
 

@@ -115,7 +115,7 @@ def is_teslim_et(request, is_id):
 			newdoc.isid = Is.objects.get(id=is_id)
 			newdoc.save()
 
-			return HttpResponseRedirect("/home")
+			return HttpResponseRedirect("/teslim_edildi")
 	else:
 		form = DocumentForm()
 
@@ -154,3 +154,17 @@ def userdetail(request):
 def alinan_isler(request):
 	islist = Is.objects.filter(teslim_edildi = False, isi_yapan_kullanici=request.user)
 	return render_to_response("alinan_isler.html", locals(), context_instance=RequestContext(request))
+
+def teslim_edildi(request):
+	return render_to_response("teslim_edildi.html")
+
+def teslim_edilen_is(request):
+	islist = Is.objects.filter(status = 3, olusturan_kullanici=request.user)
+	return render_to_response("teslim_edilen_is.html", locals(), context_instance=RequestContext(request))
+
+def onayladi(request):
+	onay = Is.objects.get(id=is_id)
+	onay.teslim_edildi = True
+	onay.status = 3 
+	onay.save()
+	return render_to_response("onaylandi.html")

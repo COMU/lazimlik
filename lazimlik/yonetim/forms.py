@@ -1,6 +1,6 @@
 from django import forms
 
-from models import Is
+from models import Is, Document
 from models import UserProfile
 
 class IsForm(forms.ModelForm):
