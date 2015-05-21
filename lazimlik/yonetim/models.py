@@ -3,7 +3,6 @@ from django.contrib.auth.models import User
 from datetime import datetime 
 
 class Sehir(models.Model):
-	sehir_id = models.AutoField(primary_key = True)
 	sehir_adi = models.CharField(max_length = 40)
 
 	def __unicode__(self):
@@ -37,8 +36,8 @@ class Is(models.Model):
 	detay = models.CharField(max_length=140)
 	#TODO etiketler = models.ManyToManyField(Etiket)
 	sehir = models.ForeignKey(Sehir, blank=True, null=True)
-	olusturan_kullanici = models.ForeignKey(User, related_name="olusturan_kullanici")
-	isi_yapan_kullanici = models.ForeignKey(User, related_name="isi_yapan_kullanici", null=True)
+	olusturan_kullanici = models.ForeignKey(UserProfile, related_name="olusturan_kullanici")
+	isi_yapan_kullanici = models.ForeignKey(UserProfile, related_name="isi_yapan_kullanici", null=True)
 	teslim_edildi = models.BooleanField(default=False)
 	status = models.IntegerField(choices=((1, "Henuz yapilmadi"), 
 		(2, "Yapiliyor"), 

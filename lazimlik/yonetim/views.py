@@ -31,25 +31,34 @@ def about_user(request):
 def is_olustur(request):
 	form = IsForm()
 	if request.POST:
-		initial_value = {'olusturan_kullanici': request.user,
+		olusturan = UserProfile.objects.get(user__id=request.user.id)
+		initial_value = {'olusturan_kullanici': olusturan,
 						 'tanim': request.POST['tanim'],
 						 'baslangic_tarihi': request.POST['baslangic_tarihi'],
 						 'bitis_tarihi': request.POST['bitis_tarihi'],
 						 'detay': request.POST['detay'],
+						 'sehir': request.POST['sehir'],
 						 #TODO 'etiketler': request.POST['etiketler'],
 						 'status': 1
 						}
 		form = IsForm(initial_value)
 		if form.is_valid():
 			_is = form.save(commit=False)
-			_is.olusturan_kullanici = request.user
+			_is.olusturan_kullanici = UserProfile.objects.get(user__id=request.user.id)
 			_is.save()
 			messages.success(request, 'İş eklendi.')
 			return HttpResponseRedirect("/isyapalim_user")
 		else:
 			#TODO form valid degilse ne yapmak lazim?
 			pass
-	else:	
+	else:
+		file = open('data/sehir.txt', 'r')
+		for i in file.readlines():
+			try:
+				sehir = Sehir.objects.get(sehir_adi=i)
+			except Exception:
+				sehir = Sehir(sehir_adi=i)
+				sehir.save()	
 		return render_to_response("isverelim.html", locals(), context_instance=RequestContext(request))
 
 @login_required
@@ -92,7 +101,7 @@ def isyapalim_user(request):
 def is_al(request, is_id):
 	try:
 		_is = Is.objects.get(id=is_id)
-		_is.isi_yapan_kullanici = request.user
+		_is.isi_yapan_kullanici = UserProfile.objects.get(user__id=request.user.id)
 		_is.status = 2
 		_is.save()
 		return render_to_response("is_al.html", locals(), context_instance=RequestContext(request))
@@ -112,9 +121,14 @@ def is_teslim_et(request, is_id):
 
 		form = DocumentForm(request.POST, request.FILES)
 		if form.is_valid():
-			newdoc = Document(docfile = request.FILES['docfile'])
-			newdoc.isid = Is.objects.get(id=is_id)
-			newdoc.save()
+			try:
+				newdoc = Document.objects.get(isid=is_id)
+				newdoc.docfile = request.FILES['docfile']
+				newdoc.save()
+			except Document.DoesNotExist:
+				newdoc = Document(docfile = request.FILES['docfile'])
+				newdoc.isid = Is.objects.get(id=is_id)
+				newdoc.save()
 
 			return HttpResponseRedirect("/teslim_edildi")
 	else:
@@ -147,7 +161,8 @@ def userdetail(request):
 
 @login_required
 def alinan_isler(request):
-	islist = Is.objects.filter(teslim_edildi = False, isi_yapan_kullanici=request.user, status = 2)
+	isi_yapan = UserProfile.objects.get(user__id=request.user.id)
+	islist = Is.objects.filter(teslim_edildi = False, isi_yapan_kullanici=isi_yapan, status = 2)
 	return render_to_response("alinan_isler.html", locals(), context_instance=RequestContext(request))
 
 @login_required
