@@ -147,7 +147,7 @@ def userdetail(request):
 
 @login_required
 def alinan_isler(request):
-	islist = Is.objects.filter(teslim_edildi = False, isi_yapan_kullanici=request.user)
+	islist = Is.objects.filter(teslim_edildi = False, isi_yapan_kullanici=request.user, status = 2)
 	return render_to_response("alinan_isler.html", locals(), context_instance=RequestContext(request))
 
 @login_required

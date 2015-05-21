@@ -8,23 +8,37 @@
 
 	<h1 style="color: #FFFFFF;">Tüm Kullanıcıları Yapmış Olduğu İşler</h1>
 	{% if documents %}
-		<ul>
 			{% for document in documents %}
-				<div class="fieldWrapper">
-					<li><td><label>Yapan:</label></td>
-					<td>{{ document.isid.isi_yapan_kullanici }}</td>
-				</div>
-				<div class="fieldWrapper">
-					<td><label>Tanımı:</label></td>
-					<td>{{ document.isid.tanim }}</td>
-				</div>
-				<div class="fieldWrapper">
-					<td><label>Detaylar:</label></td>
-					<td>{{ document.isid.detay }}</td>
-				</div>
-				<a href="{{ document.docfile.url }}">{{ document.docfile.name }}</a></li>
+			<table class="table table-bordered">
+					<tr>
+						<div class="fieldWrapper">
+							<td><label>Yapan:</label></td>
+							<td>{{ document.isid.isi_yapan_kullanici }}</td>
+						</div>
+					</tr>
+
+					<tr>
+						<div class="fieldWrapper">
+							<td><label>Tanımı:</label></td>
+							<td>{{ document.isid.tanim }}</td>
+						</div>
+					</tr>
+
+					<tr>
+						<div class="fieldWrapper">
+							<td><label>Detaylar:</label></td>
+							<td>{{ document.isid.detay }}</td>
+						</div>
+					</tr>
+
+					<tr>
+						<div class="fieldWrapper">
+							<td><label>Materyal:</label></td>
+							<td><a href="{{ document.docfile.url }}">{{ document.docfile }}</a></td>
+						</div>
+					</tr>
+				</table>
 			{% endfor %}
-		</ul>
 	{% else %}
 		<p>Teslim edilmiş iş yok..</p>
 	{% endif %}
